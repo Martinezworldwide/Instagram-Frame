@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Catholic-Themed Instagram Post Frame</title>
+  <title>Editable Catholic-Themed Instagram Post Frame</title>
   <style>
     /* General Reset */
     * {
@@ -28,11 +28,13 @@
       background-color: #fdfaf6; /* Soft cream background */
       border: 10px solid #b0b0b0; /* Silver border */
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
       font-family: 'Georgia', serif;
       color: #4b4b4b;
+      padding: 20px;
     }
 
     /* Corner Crosses */
@@ -42,25 +44,10 @@
       color: #b0b0b0; /* Silver color */
     }
 
-    .top-left {
-      top: 15px;
-      left: 15px;
-    }
-
-    .top-right {
-      top: 15px;
-      right: 15px;
-    }
-
-    .bottom-left {
-      bottom: 15px;
-      left: 15px;
-    }
-
-    .bottom-right {
-      bottom: 15px;
-      right: 15px;
-    }
+    .top-left { top: 15px; left: 15px; }
+    .top-right { top: 15px; right: 15px; }
+    .bottom-left { bottom: 15px; left: 15px; }
+    .bottom-right { bottom: 15px; right: 15px; }
 
     /* Scripture Text Lines */
     .scripture {
@@ -68,32 +55,31 @@
       width: 80%;
       border-top: 1px solid #b0b0b0;
       margin-top: 10px;
+      font-size: 1.2em;
+      padding: 5px 0;
     }
 
-    .scripture.top {
-      top: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
+    .scripture.top { top: 50px; }
+    .scripture.bottom { bottom: 50px; }
 
-    .scripture.bottom {
-      bottom: 50px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Small Cross in the Center of Scripture Line */
-    .scripture::before,
-    .scripture::after {
+    /* Cross Icons in Scripture Line */
+    .scripture::before, .scripture::after {
       content: "+";
       margin: 0 10px;
       font-size: 1.2em;
       color: #b0b0b0;
     }
 
-    /* Optional: Rosary/Halo Motif */
+    /* Main Quote Section */
+    .quote {
+      font-size: 2em;
+      font-style: italic;
+      max-width: 80%;
+      margin: 20px 0;
+      line-height: 1.5;
+    }
+
+    /* Optional Rosary/Halo Motif */
     .halo-motif {
       position: absolute;
       top: 20%;
@@ -112,15 +98,14 @@
     <div class="corner-cross bottom-left">✝</div>
     <div class="corner-cross bottom-right">✝</div>
 
-    <!-- Scripture Lines -->
-    <div class="scripture top">Scripture Text Here</div>
-    <div class="scripture bottom">Another Scripture Text Here</div>
+    <!-- Scripture Lines (Editable Text) -->
+    <div class="scripture top">"The Lord is my shepherd; I shall not want." – Psalm 23:1</div>
+    <div class="quote">"Blessed are the peacemakers, for they shall be called children of God."</div>
+    <div class="scripture bottom">"For God so loved the world that He gave His only Son." – John 3:16</div>
 
     <!-- Optional Halo/Rosary Motif -->
     <div class="halo-motif">○</div>
-
-    <!-- Main Content Placeholder -->
-    <p style="font-size: 1.5em; max-width: 70%;">Your Image or Text Here</p>
   </div>
 </body>
 </html>
+

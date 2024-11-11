@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Editable Catholic-Themed Instagram Post Frame</title>
+  <title>Customizable Catholic-Themed Instagram Post Frame</title>
   <style>
     /* General Reset */
     * {
@@ -12,36 +12,46 @@
       padding: 0;
     }
 
-    /* Background and Frame */
+    /* Layout */
     body {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      background-color: #f0f4f8; /* Light blue background */
+      min-height: 100vh;
+      background-color: #f0f4f8;
+      font-family: 'Georgia', serif;
     }
 
+    .editor {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .editor input, .editor select, .editor button {
+      margin: 5px;
+      padding: 10px;
+      font-size: 1em;
+    }
+
+    /* Default Frame Styling */
     .frame {
       position: relative;
       width: 1080px;
       height: 1080px;
-      background-color: #fdfaf6; /* Soft cream background */
-      border: 10px solid #b0b0b0; /* Silver border */
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       text-align: center;
-      font-family: 'Georgia', serif;
-      color: #4b4b4b;
       padding: 20px;
+      transition: all 0.3s ease;
     }
 
-    /* Corner Crosses */
+    /* Default Corner Crosses */
     .corner-cross {
       position: absolute;
       font-size: 1.5em;
-      color: #b0b0b0; /* Silver color */
     }
 
     .top-left { top: 15px; left: 15px; }
@@ -49,11 +59,11 @@
     .bottom-left { bottom: 15px; left: 15px; }
     .bottom-right { bottom: 15px; right: 15px; }
 
-    /* Scripture Text Lines */
+    /* Scripture Text */
     .scripture {
       position: absolute;
       width: 80%;
-      border-top: 1px solid #b0b0b0;
+      border-top: 1px solid;
       margin-top: 10px;
       font-size: 1.2em;
       padding: 5px 0;
@@ -67,10 +77,9 @@
       content: "+";
       margin: 0 10px;
       font-size: 1.2em;
-      color: #b0b0b0;
     }
 
-    /* Main Quote Section */
+    /* Main Quote */
     .quote {
       font-size: 2em;
       font-style: italic;
@@ -79,19 +88,54 @@
       line-height: 1.5;
     }
 
-    /* Optional Rosary/Halo Motif */
-    .halo-motif {
-      position: absolute;
-      top: 20%;
-      right: 20%;
-      opacity: 0.2;
-      font-size: 10em;
-      color: #b0b0b0;
+    /* Frame Styles */
+    .frame.style1 {
+      background-color: #fdfaf6;
+      border: 10px solid #b0b0b0;
+      color: #4b4b4b;
+    }
+
+    .frame.style2 {
+      background-color: #e0e5ec;
+      border: 10px double #6b6b6b;
+      color: #2f2f2f;
+      font-family: 'Arial', sans-serif;
+    }
+
+    .frame.style3 {
+      background-color: #ffffff;
+      border: 15px solid #3d3d3d;
+      color: #2b2b2b;
+      font-family: 'Verdana', sans-serif;
+      border-radius: 10px;
+    }
+
+    .frame.style4 {
+      background-color: #f8f9fa;
+      border: 8px solid #2e2e2e;
+      color: #444;
+      font-family: 'Courier New', monospace;
     }
   </style>
 </head>
 <body>
-  <div class="frame">
+
+  <!-- User Input Form -->
+  <div class="editor">
+    <select id="frameStyle" onchange="changeFrameStyle()">
+      <option value="style1">Classic Silver</option>
+      <option value="style2">Modern Double Border</option>
+      <option value="style3">Dark Bold Frame</option>
+      <option value="style4">Minimalist</option>
+    </select>
+    <input type="text" id="topScripture" placeholder="Enter top scripture...">
+    <input type="text" id="quoteText" placeholder="Enter main quote...">
+    <input type="text" id="bottomScripture" placeholder="Enter bottom scripture...">
+    <button onclick="downloadImage()">Download as Image</button>
+  </div>
+
+  <!-- Frame Display -->
+  <div class="frame style1" id="frame">
     <!-- Corner Crosses -->
     <div class="corner-cross top-left">✝</div>
     <div class="corner-cross top-right">✝</div>
@@ -99,13 +143,42 @@
     <div class="corner-cross bottom-right">✝</div>
 
     <!-- Scripture Lines (Editable Text) -->
-    <div class="scripture top">"The Lord is my shepherd; I shall not want." – Psalm 23:1</div>
-    <div class="quote">"Blessed are the peacemakers, for they shall be called children of God."</div>
-    <div class="scripture bottom">"For God so loved the world that He gave His only Son." – John 3:16</div>
-
-    <!-- Optional Halo/Rosary Motif -->
-    <div class="halo-motif">○</div>
+    <div class="scripture top" id="topScriptureText">"The Lord is my shepherd; I shall not want." – Psalm 23:1</div>
+    <div class="quote" id="quoteTextDisplay">"Blessed are the peacemakers, for they shall be called children of God."</div>
+    <div class="scripture bottom" id="bottomScriptureText">"For God so loved the world that He gave His only Son." – John 3:16</div>
   </div>
+
+  <!-- Script -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script>
+    // Change Frame Style
+    function changeFrameStyle() {
+      const frame = document.getElementById('frame');
+      const selectedStyle = document.getElementById('frameStyle').value;
+      frame.className = `frame ${selectedStyle}`;
+    }
+
+    // Update Frame Text in Real-Time
+    document.getElementById('topScripture').addEventListener('input', (e) => {
+      document.getElementById('topScriptureText').innerText = e.target.value;
+    });
+    document.getElementById('quoteText').addEventListener('input', (e) => {
+      document.getElementById('quoteTextDisplay').innerText = e.target.value;
+    });
+    document.getElementById('bottomScripture').addEventListener('input', (e) => {
+      document.getElementById('bottomScriptureText').innerText = e.target.value;
+    });
+
+    // Function to Download Frame as Image
+    function downloadImage() {
+      html2canvas(document.getElementById('frame')).then(canvas => {
+        const link = document.createElement('a');
+        link.href = canvas.toDataURL('image/png');
+        link.download = 'instagram_frame.png';
+        link.click();
+      });
+    }
+  </script>
+
 </body>
 </html>
-

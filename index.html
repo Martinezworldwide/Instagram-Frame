@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Catholic-Themed Instagram Post Frame</title>
+  <style>
+    /* General Reset */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Background and Frame */
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      background-color: #f0f4f8; /* Light blue background */
+    }
+
+    .frame {
+      position: relative;
+      width: 1080px;
+      height: 1080px;
+      background-color: #fdfaf6; /* Soft cream background */
+      border: 10px solid #b0b0b0; /* Silver border */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-family: 'Georgia', serif;
+      color: #4b4b4b;
+    }
+
+    /* Corner Crosses */
+    .corner-cross {
+      position: absolute;
+      font-size: 1.5em;
+      color: #b0b0b0; /* Silver color */
+    }
+
+    .top-left {
+      top: 15px;
+      left: 15px;
+    }
+
+    .top-right {
+      top: 15px;
+      right: 15px;
+    }
+
+    .bottom-left {
+      bottom: 15px;
+      left: 15px;
+    }
+
+    .bottom-right {
+      bottom: 15px;
+      right: 15px;
+    }
+
+    /* Scripture Text Lines */
+    .scripture {
+      position: absolute;
+      width: 80%;
+      border-top: 1px solid #b0b0b0;
+      margin-top: 10px;
+    }
+
+    .scripture.top {
+      top: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .scripture.bottom {
+      bottom: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Small Cross in the Center of Scripture Line */
+    .scripture::before,
+    .scripture::after {
+      content: "+";
+      margin: 0 10px;
+      font-size: 1.2em;
+      color: #b0b0b0;
+    }
+
+    /* Optional: Rosary/Halo Motif */
+    .halo-motif {
+      position: absolute;
+      top: 20%;
+      right: 20%;
+      opacity: 0.2;
+      font-size: 10em;
+      color: #b0b0b0;
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <!-- Corner Crosses -->
+    <div class="corner-cross top-left">✝</div>
+    <div class="corner-cross top-right">✝</div>
+    <div class="corner-cross bottom-left">✝</div>
+    <div class="corner-cross bottom-right">✝</div>
+
+    <!-- Scripture Lines -->
+    <div class="scripture top">Scripture Text Here</div>
+    <div class="scripture bottom">Another Scripture Text Here</div>
+
+    <!-- Optional Halo/Rosary Motif -->
+    <div class="halo-motif">○</div>
+
+    <!-- Main Content Placeholder -->
+    <p style="font-size: 1.5em; max-width: 70%;">Your Image or Text Here</p>
+  </div>
+</body>
+</html>
